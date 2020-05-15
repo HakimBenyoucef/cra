@@ -1,0 +1,15 @@
+.blue {
+  background-color: cornflowerblue;
+}
+.white {
+  background-color: white;
+}
+.day{
+  border: 1px solid;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 18px;
+  width: 100%;
+}

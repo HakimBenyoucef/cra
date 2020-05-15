@@ -24,7 +24,6 @@ const joursCalendar = [
 ];
 
 class Calendar extends Component {
-
   getDaysOfMonth(month, year) {
     const monthIndex = month;
     const namesApi = Object.freeze(joursApiDate);
@@ -97,7 +96,14 @@ class Calendar extends Component {
             {this.dataWeek1 &&
               this.dataWeek1.map((day) => (
                 <Table.Cell>
-                  <Day day={day.numero} />
+                  <Day
+                    day={day.numero}
+                    color={
+                      day.jour === "Samedi" || day.jour === "Dimanche"
+                        ? "red"
+                        : "blue"
+                    }
+                  />
                 </Table.Cell>
               ))}
           </Table.Row>
@@ -105,7 +111,14 @@ class Calendar extends Component {
             {this.dataWeek2 &&
               this.dataWeek2.map((day) => (
                 <Table.Cell>
-                  <Day day={day.numero} />
+                  <Day
+                    day={day.numero}
+                    color={
+                      day.jour === "Samedi" || day.jour === "Dimanche"
+                        ? "red"
+                        : "blue"
+                    }
+                  />
                 </Table.Cell>
               ))}
           </Table.Row>
@@ -113,7 +126,14 @@ class Calendar extends Component {
             {this.dataWeek3 &&
               this.dataWeek3.map((day) => (
                 <Table.Cell>
-                  <Day day={day.numero} />
+                  <Day
+                    day={day.numero}
+                    color={
+                      day.jour === "Samedi" || day.jour === "Dimanche"
+                        ? "red"
+                        : "blue"
+                    }
+                  />
                 </Table.Cell>
               ))}
           </Table.Row>
@@ -121,7 +141,14 @@ class Calendar extends Component {
             {this.dataWeek3 &&
               this.dataWeek4.map((day) => (
                 <Table.Cell>
-                  <Day day={day.numero} />
+                  <Day
+                    day={day.numero}
+                    color={
+                      day.jour === "Samedi" || day.jour === "Dimanche"
+                        ? "red"
+                        : "blue"
+                    }
+                  />
                 </Table.Cell>
               ))}
           </Table.Row>
@@ -129,7 +156,14 @@ class Calendar extends Component {
             <Table.Row>
               {this.dataWeek5.map((day) => (
                 <Table.Cell>
-                  <Day day={day.numero} />
+                  <Day
+                    day={day.numero}
+                    color={
+                      day.jour === "Samedi" || day.jour === "Dimanche"
+                        ? "red"
+                        : "blue"
+                    }
+                  />
                 </Table.Cell>
               ))}
             </Table.Row>
@@ -138,7 +172,14 @@ class Calendar extends Component {
             <Table.Row>
               {this.dataWeek6.map((day) => (
                 <Table.Cell>
-                  <Day day={day.numero} />
+                  <Day
+                    day={day.numero}
+                    color={
+                      day.jour === "Samedi" || day.jour === "Dimanche"
+                        ? "red"
+                        : "blue"
+                    }
+                  />
                 </Table.Cell>
               ))}
             </Table.Row>
