@@ -6,8 +6,6 @@ const previousYear = new Date().getFullYear() - 1;
 
 class FormCalendar extends Component {
   render() {
-    console.log("month index ", this.props.month);
-    console.log("month  ", this.props.months[this.props.month]);
     return (
       <Form onSubmit={this.onSubmit}>
         <Form.Dropdown
