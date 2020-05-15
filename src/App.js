@@ -46,12 +46,14 @@ class App extends Component {
     const monthIndex = month;
     const namesApi = Object.freeze(joursApiDate);
     const date = new Date(year, monthIndex, 1);
+    console.log(date)
     const result = [];
     while (date.getMonth() === monthIndex) {
       result.push({ numero: date.getDate(), jour: namesApi[date.getDay()] });
       date.setDate(date.getDate() + 1);
     }
 
+    console.log("result length " + result.length);
     this.getDataWeek(result);
     return result;
   }
@@ -106,7 +108,7 @@ class App extends Component {
   }
 
   render() {
-    this.getDaysOfMonth(this.state.month + 1, this.state.year);
+    this.getDaysOfMonth(this.state.month, this.state.year);
     return (
       <GridContainer>
         <Table color={"blue"} key={"blue"} collapsing>
