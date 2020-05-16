@@ -2,20 +2,12 @@ import React, { Component } from "react";
 import {
   ExcelExport,
   ExcelExportColumn,
-  ExcelExportColumnGroup,
 } from "@progress/kendo-react-excel-export";
-import { aggregateBy, process } from "@progress/kendo-data-query";
-import products from "./products.json";
 
 //https://www.telerik.com/kendo-react-ui/components/excelexport/
 //https://stackblitz.com/run/?file=app%2Fmain.jsx
 //https://stackblitz.com/run/?file=app%2Fmain.jsx
 export default class Excel extends Component {
-  aggregates = [{ field: "presence", aggregate: "sum" }];
-
-  total = aggregateBy(this.props.cra, this.aggregates);
-
-  CustomGroupFooter = (props) => `SUM: 4`;
 
   CustomFooter = (props) => `Total: 3`;
   render() {
@@ -29,7 +21,7 @@ export default class Excel extends Component {
       >
         <ExcelExportColumn
           cellOptions={{ textAlign: "center" }}
-          field="jour"
+          field="numero"
           title={this.props.month}
           width={100}
           footerCellOptions={{ wrap: true, textAlign: "center" }}

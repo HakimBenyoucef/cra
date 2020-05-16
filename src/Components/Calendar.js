@@ -25,10 +25,21 @@ const joursCalendar = [
 
 class Calendar extends Component {
   state = { months: [] };
+
   componentDidMount() {
     let result = this.getDaysOfMonth(this.props.month, this.props.year);
     this.props.setDays(result);
     this.props.fillCra(result);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (
+      this.props.month !== prevProps.month ||
+      this.props.year !== prevProps.year
+    ) {
+      let result = this.getDaysOfMonth(this.props.month, this.props.year);
+      this.props.setDays(result);
+    }
   }
   getDaysOfMonth(month, year) {
     const monthIndex = month;
@@ -88,7 +99,7 @@ class Calendar extends Component {
         <Table.Header>
           <Table.Row>
             {joursCalendar.map((jour) => (
-              <Table.HeaderCell width={3} textAlign="center" key={jour}>
+              <Table.HeaderCell width={100} textAlign="center" key={jour}>
                 {jour}
               </Table.HeaderCell>
             ))}
@@ -99,8 +110,16 @@ class Calendar extends Component {
           <Table.Row>
             {this.dataWeek1 &&
               this.dataWeek1.map((day) => (
-                <Table.Cell>
+                <Table.Cell key={day.numero}>
                   <Day
+                    selected={
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0] &&
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0].presence === 1
+                    }
                     updateCra={this.props.updateCra}
                     day={day.numero}
                   />
@@ -110,8 +129,16 @@ class Calendar extends Component {
           <Table.Row>
             {this.dataWeek2 &&
               this.dataWeek2.map((day) => (
-                <Table.Cell>
+                <Table.Cell key={day.numero}>
                   <Day
+                    selected={
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0] &&
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0].presence === 1
+                    }
                     updateCra={this.props.updateCra}
                     day={day.numero}
                   />
@@ -121,8 +148,16 @@ class Calendar extends Component {
           <Table.Row>
             {this.dataWeek3 &&
               this.dataWeek3.map((day) => (
-                <Table.Cell>
+                <Table.Cell key={day.numero}>
                   <Day
+                    selected={
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0] &&
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0].presence === 1
+                    }
                     updateCra={this.props.updateCra}
                     day={day.numero}
                   />
@@ -132,8 +167,16 @@ class Calendar extends Component {
           <Table.Row>
             {this.dataWeek3 &&
               this.dataWeek4.map((day) => (
-                <Table.Cell>
+                <Table.Cell key={day.numero}>
                   <Day
+                    selected={
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0] &&
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0].presence === 1
+                    }
                     updateCra={this.props.updateCra}
                     day={day.numero}
                   />
@@ -143,8 +186,16 @@ class Calendar extends Component {
           {this.dataWeek5 && this.dataWeek5.length > 0 && (
             <Table.Row>
               {this.dataWeek5.map((day) => (
-                <Table.Cell>
+                <Table.Cell key={day.numero}>
                   <Day
+                    selected={
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0] &&
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0].presence === 1
+                    }
                     updateCra={this.props.updateCra}
                     day={day.numero}
                   />
@@ -155,8 +206,16 @@ class Calendar extends Component {
           {this.dataWeek6 && this.dataWeek6.length > 0 && (
             <Table.Row>
               {this.dataWeek6.map((day) => (
-                <Table.Cell>
+                <Table.Cell key={day.numero}>
                   <Day
+                    selected={
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0] &&
+                      this.props.cra.filter(
+                        (jour) => jour.numero === day.numero
+                      )[0].presence === 1
+                    }
                     updateCra={this.props.updateCra}
                     day={day.numero}
                   />

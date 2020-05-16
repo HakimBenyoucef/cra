@@ -1,15 +1,22 @@
 import React, { Component } from "react";
-import { Card } from "semantic-ui-react";
 import "../style/styles.css";
 
 class Day extends Component {
   state = {
-    className: "white",
+    className: this.props.selected ? "blue" : "white",
   };
   constructor(props) {
     super(props);
 
     this.onClick = this.onClick.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.selected !== prevProps.selected) {
+      this.setState({
+        className: this.props.selected ? "blue" : "white",
+      });
+    }
   }
 
   onClick() {
@@ -26,6 +33,7 @@ class Day extends Component {
     }
   }
   render() {
+    //console.log("this.props.selected ", this.props.selected);
     return (
       <React.Fragment>
         {this.props.day && (
