@@ -24,19 +24,23 @@ const joursCalendar = [
 ];
 
 class Calendar extends Component {
+  state = { months: [] };
+  componentDidMount() {
+    let result = this.getDaysOfMonth(this.props.month, this.props.year);
+    this.props.setDays(result);
+    this.props.fillCra(result);
+  }
   getDaysOfMonth(month, year) {
     const monthIndex = month;
     const namesApi = Object.freeze(joursApiDate);
     const date = new Date(year, monthIndex, 1);
-    console.log(date);
     const result = [];
     while (date.getMonth() === monthIndex) {
       result.push({ numero: date.getDate(), jour: namesApi[date.getDay()] });
       date.setDate(date.getDate() + 1);
     }
 
-    console.log("result length " + result.length);
-    this.props.setDays(result);
+    this.setState({ months: result });
     this.getDataWeek(result);
     return result;
   }
@@ -79,7 +83,6 @@ class Calendar extends Component {
   }
 
   render() {
-    this.getDaysOfMonth(this.props.month, this.props.year);
     return (
       <Table color={"blue"} key={"blue"} collapsing>
         <Table.Header>
@@ -98,12 +101,8 @@ class Calendar extends Component {
               this.dataWeek1.map((day) => (
                 <Table.Cell>
                   <Day
+                    updateCra={this.props.updateCra}
                     day={day.numero}
-                    color={
-                      day.jour === "Samedi" || day.jour === "Dimanche"
-                        ? "red"
-                        : "blue"
-                    }
                   />
                 </Table.Cell>
               ))}
@@ -113,12 +112,8 @@ class Calendar extends Component {
               this.dataWeek2.map((day) => (
                 <Table.Cell>
                   <Day
+                    updateCra={this.props.updateCra}
                     day={day.numero}
-                    color={
-                      day.jour === "Samedi" || day.jour === "Dimanche"
-                        ? "red"
-                        : "blue"
-                    }
                   />
                 </Table.Cell>
               ))}
@@ -128,12 +123,8 @@ class Calendar extends Component {
               this.dataWeek3.map((day) => (
                 <Table.Cell>
                   <Day
+                    updateCra={this.props.updateCra}
                     day={day.numero}
-                    color={
-                      day.jour === "Samedi" || day.jour === "Dimanche"
-                        ? "red"
-                        : "blue"
-                    }
                   />
                 </Table.Cell>
               ))}
@@ -143,12 +134,8 @@ class Calendar extends Component {
               this.dataWeek4.map((day) => (
                 <Table.Cell>
                   <Day
+                    updateCra={this.props.updateCra}
                     day={day.numero}
-                    color={
-                      day.jour === "Samedi" || day.jour === "Dimanche"
-                        ? "red"
-                        : "blue"
-                    }
                   />
                 </Table.Cell>
               ))}
@@ -158,12 +145,8 @@ class Calendar extends Component {
               {this.dataWeek5.map((day) => (
                 <Table.Cell>
                   <Day
+                    updateCra={this.props.updateCra}
                     day={day.numero}
-                    color={
-                      day.jour === "Samedi" || day.jour === "Dimanche"
-                        ? "red"
-                        : "blue"
-                    }
                   />
                 </Table.Cell>
               ))}
@@ -174,12 +157,8 @@ class Calendar extends Component {
               {this.dataWeek6.map((day) => (
                 <Table.Cell>
                   <Day
+                    updateCra={this.props.updateCra}
                     day={day.numero}
-                    color={
-                      day.jour === "Samedi" || day.jour === "Dimanche"
-                        ? "red"
-                        : "blue"
-                    }
                   />
                 </Table.Cell>
               ))}

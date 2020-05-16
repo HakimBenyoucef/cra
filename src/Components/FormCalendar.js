@@ -41,7 +41,7 @@ class FormCalendar extends Component {
             value: month,
           }))}
         />
-        <Form.Button content="Export to Excel" primary fluid />
+        <Form.Button content="Exporter en Excel" primary fluid />
       </Form>
     );
   }

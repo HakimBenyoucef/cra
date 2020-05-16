@@ -13,15 +13,16 @@ class Day extends Component {
   }
 
   onClick() {
-    console.log("white");
     if (this.state.className === "white") {
       this.setState({
         className: "blue",
       });
+      this.props.updateCra(this.props.day, 1);
     } else {
       this.setState({
         className: "white",
       });
+      this.props.updateCra(this.props.day, 0);
     }
   }
   render() {

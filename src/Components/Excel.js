@@ -7,33 +7,44 @@ import {
 import { aggregateBy, process } from "@progress/kendo-data-query";
 import products from "./products.json";
 
-const aggregates = [{ field: "UnitPrice", aggregate: "sum" }];
-const group = [{ field: "Discontinued", aggregates: aggregates }];
-
-const total = aggregateBy(products, aggregates);
-
-const CustomGroupHeader = (props) => `Discontinued: ${props.value}`;
-
-const CustomGroupFooter = (props) =>
-  `SUM: \$ ${props.aggregates.UnitPrice.sum.toFixed(2)}`;
-
-const CustomFooter = (props) =>
-  `Total ${props.column.title}: \$ ${total.UnitPrice.sum}`;
-  
-const data = products;
 //https://www.telerik.com/kendo-react-ui/components/excelexport/
+//https://stackblitz.com/run/?file=app%2Fmain.jsx
+//https://stackblitz.com/run/?file=app%2Fmain.jsx
 export default class Excel extends Component {
+  aggregates = [{ field: "presence", aggregate: "sum" }];
+
+  total = aggregateBy(this.props.cra, this.aggregates);
+
+  CustomGroupFooter = (props) => `SUM: 4`;
+
+  CustomFooter = (props) => `Total: 3`;
   render() {
     return (
       <ExcelExport
-        data={data}
-        fileName={"CRA-"+this.props.month+".xlsx"}
+        data={this.props.cra}
+        fileName={"CRA-" + this.props.month + "-" + this.props.name + ".xlsx"}
         ref={(exporter) => {
           this.props.setExporter(exporter);
         }}
       >
-        <ExcelExportColumn field="Jour" title={this.props.month} width={100} />
-        <ExcelExportColumn field="Presence" title="Présence" width={100} />
+        <ExcelExportColumn
+          cellOptions={{ textAlign: "center" }}
+          field="jour"
+          title={this.props.month}
+          width={100}
+          footerCellOptions={{ wrap: true, textAlign: "center" }}
+          footer={() => "Total"}
+        />
+        <ExcelExportColumn
+          cellOptions={{ textAlign: "center" }}
+          field="presence"
+          title="Présence"
+          width={100}
+          footerCellOptions={{ wrap: true, textAlign: "center" }}
+          footer={() =>
+            this.props.cra.reduce((acc, obj) => acc + obj.presence, 0)
+          }
+        />
       </ExcelExport>
     );
   }
