@@ -5,7 +5,9 @@ export default function GridContainer({ children }) {
   return (
     <Grid padded="vertically" columns={1} centered>
       <Grid.Row>
-        <Grid.Column style={{ maxWidth: 550 }}>{children}</Grid.Column>
+        <Grid.Column style={{ maxWidth: 600, minWidth: 550 }}>
+          {children}
+        </Grid.Column>
       </Grid.Row>
     </Grid>
   );

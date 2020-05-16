@@ -95,11 +95,11 @@ class Calendar extends Component {
 
   render() {
     return (
-      <Table color={"blue"} key={"blue"} collapsing>
+      <Table color={"blue"} key={"blue"}>
         <Table.Header>
           <Table.Row>
             {joursCalendar.map((jour) => (
-              <Table.HeaderCell width={100} textAlign="center" key={jour}>
+              <Table.HeaderCell textAlign="center" key={jour}>
                 {jour}
               </Table.HeaderCell>
             ))}
