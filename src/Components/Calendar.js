@@ -36,6 +36,7 @@ class Calendar extends Component {
     }
 
     console.log("result length " + result.length);
+    this.props.setDays(result);
     this.getDataWeek(result);
     return result;
   }

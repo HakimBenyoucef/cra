@@ -23,7 +23,7 @@ class App extends Component {
     this.onMonthChange = this.onMonthChange.bind(this);
     this.exportToExcel = this.exportToExcel.bind(this);
     this.setExporter = this.setExporter.bind(this);
-    
+    this.setDays = this.setDays.bind(this);
   }
 
   onYearChange(e, { value }) {
@@ -39,17 +39,46 @@ class App extends Component {
   }
 
   exportToExcel() {
-    this._exporter.save();
+    this.save(this._exporter);
   }
 
   setExporter(exporter) {
     this._exporter = exporter;
   }
 
+  setDays(days) {
+    this._days = days;
+  }
+
+  save = (component) => {
+    const options = component.workbookOptions();
+    const rows = options.sheets[0].rows;
+
+    rows.forEach((row, index) => {
+      if (row.type === "data") {
+        console.log("i = ", index);
+
+        console.log("this._days.jour = ", this._days[index-1].jour);
+        if (this._days[index-1].jour === "Samedi" || this._days[index-1].jour === "Dimanche") {
+          row.cells.forEach((cell) => {
+            
+            cell.background = "#C2C2C2";
+          });
+        }
+      }
+    });
+
+    component.save(options);
+  };
+
   render() {
     return (
       <GridContainer>
-        <Calendar month={this.state.month} year={this.state.year} />
+        <Calendar
+          month={this.state.month}
+          year={this.state.year}
+          setDays={this.setDays}
+        />
         <FormCalendar
           month={this.state.month}
           year={this.state.year}
@@ -58,7 +87,10 @@ class App extends Component {
           onMonthChange={this.onMonthChange}
           exportToExcel={this.exportToExcel}
         />
-        <Excel setExporter={this.setExporter} />
+        <Excel
+          setExporter={this.setExporter}
+          month={this._months[this.state.month]}
+        />
       </GridContainer>
     );
   }

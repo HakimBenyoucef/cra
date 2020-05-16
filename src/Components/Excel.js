@@ -9,9 +9,7 @@ import products from "./products.json";
 
 const aggregates = [{ field: "UnitPrice", aggregate: "sum" }];
 const group = [{ field: "Discontinued", aggregates: aggregates }];
-const data = process(products, {
-  group: group,
-}).data;
+
 const total = aggregateBy(products, aggregates);
 
 const CustomGroupHeader = (props) => `Discontinued: ${props.value}`;
@@ -21,52 +19,21 @@ const CustomGroupFooter = (props) =>
 
 const CustomFooter = (props) =>
   `Total ${props.column.title}: \$ ${total.UnitPrice.sum}`;
-
+  
+const data = products;
+//https://www.telerik.com/kendo-react-ui/components/excelexport/
 export default class Excel extends Component {
   render() {
     return (
       <ExcelExport
         data={data}
-        group={group}
-        fileName="Products.xlsx"
+        fileName={"CRA-"+this.props.month+".xlsx"}
         ref={(exporter) => {
           this.props.setExporter(exporter);
         }}
       >
-        <ExcelExportColumn
-          field="ProductID"
-          title="Product ID"
-          locked={true}
-          width={200}
-        />
-        <ExcelExportColumn
-          field="ProductName"
-          title="Product Name"
-          width={350}
-        />
-        <ExcelExportColumnGroup
-          title="Availability"
-          headerCellOptions={{ textAlign: "center" }}
-        >
-          <ExcelExportColumn
-            field="UnitPrice"
-            title="Price"
-            cellOptions={{ format: "$#,##0.00" }}
-            width={150}
-            footerCellOptions={{ wrap: true, textAlign: "center" }}
-            groupFooterCellOptions={{ textAlign: "right" }}
-            groupFooter={CustomGroupFooter}
-            footer={CustomFooter}
-          />
-          <ExcelExportColumn field="UnitsOnOrder" title="Units on Order" />
-          <ExcelExportColumn field="UnitsInStock" title="Units in Stock" />
-        </ExcelExportColumnGroup>
-        <ExcelExportColumn
-          field="Discontinued"
-          title="Discontinued"
-          hidden={true}
-          groupHeader={CustomGroupHeader}
-        />
+        <ExcelExportColumn field="Jour" title={this.props.month} width={100} />
+        <ExcelExportColumn field="Presence" title="Présence" width={100} />
       </ExcelExport>
     );
   }
