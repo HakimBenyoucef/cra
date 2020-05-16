@@ -27,12 +27,14 @@ class Day extends Component {
   render() {
     return (
       <React.Fragment>
-        <button
-          onClick={this.onClick}
-          className={"day " + this.state.className}
-        >
-          {this.props.day}
-        </button>
+        {this.props.day && (
+          <button
+            onClick={this.onClick}
+            className={"day " + this.state.className}
+          >
+            {this.props.day}
+          </button>
+        )}
       </React.Fragment>
     );
   }

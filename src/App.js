@@ -4,9 +4,11 @@ import moment from "moment";
 import GridContainer from "./Components/GridContainer";
 import FormCalendar from "./Components/FormCalendar";
 import Calendar from "./Components/Calendar";
-
+import Excel from "./Components/Excel";
 
 class App extends Component {
+  _exporter;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -19,6 +21,9 @@ class App extends Component {
 
     this.onYearChange = this.onYearChange.bind(this);
     this.onMonthChange = this.onMonthChange.bind(this);
+    this.exportToExcel = this.exportToExcel.bind(this);
+    this.setExporter = this.setExporter.bind(this);
+    
   }
 
   onYearChange(e, { value }) {
@@ -33,19 +38,27 @@ class App extends Component {
     });
   }
 
+  exportToExcel() {
+    this._exporter.save();
+  }
+
+  setExporter(exporter) {
+    this._exporter = exporter;
+  }
+
   render() {
     return (
       <GridContainer>
-        
-        <Calendar month={this.state.month} year={this.state.year}/>
-
+        <Calendar month={this.state.month} year={this.state.year} />
         <FormCalendar
           month={this.state.month}
           year={this.state.year}
           months={this._months}
           onYearChange={this.onYearChange}
           onMonthChange={this.onMonthChange}
+          exportToExcel={this.exportToExcel}
         />
+        <Excel setExporter={this.setExporter} />
       </GridContainer>
     );
   }

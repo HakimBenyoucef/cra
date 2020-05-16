@@ -7,7 +7,7 @@ const previousYear = new Date().getFullYear() - 1;
 class FormCalendar extends Component {
   render() {
     return (
-      <Form onSubmit={this.onSubmit}>
+      <Form onSubmit={this.props.exportToExcel}>
         <Form.Dropdown
           fluid
           selection
@@ -41,7 +41,7 @@ class FormCalendar extends Component {
             value: month,
           }))}
         />
-        <Form.Button content="Export" primary fluid />
+        <Form.Button content="Export to Excel" primary fluid />
       </Form>
     );
   }
