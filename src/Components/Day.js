@@ -33,7 +33,6 @@ class Day extends Component {
     }
   }
   render() {
-    //console.log("this.props.selected ", this.props.selected);
     return (
       <React.Fragment>
         {this.props.day && (

@@ -17,6 +17,7 @@ class App extends Component {
       month: new Date().getMonth(),
       name: "",
       cra: [],
+      selectAll: false,
     };
     moment.locale();
     this._months = moment.months();
@@ -33,16 +34,18 @@ class App extends Component {
   }
 
   onYearChange(e, { value }) {
-    console.log(value)
     this.setState({
       year: value,
+      cra: [],
+      selectAll: false,
     });
   }
 
   onMonthChange(e, { value }) {
-    console.log(value)
     this.setState({
       month: this._months.indexOf(value),
+      cra: [],
+      selectAll: false,
     });
   }
 
@@ -84,7 +87,7 @@ class App extends Component {
       cra.push({ numero: day.numero, jour: day.jour, presence: 0 })
     );
     this.setState({
-      cra: cra,
+      cra: [...cra],
     });
   }
 
@@ -97,7 +100,7 @@ class App extends Component {
       return jour;
     });
     this.setState({
-      cra: cra,
+      cra: [...cra],
     });
   }
 
@@ -118,6 +121,7 @@ class App extends Component {
     });
     this.setState({
       cra: [...cra],
+      selectAll: !this.state.selectAll,
     });
   }
 
@@ -152,6 +156,7 @@ class App extends Component {
                 <Checkbox
                   label="Séléctionner tous les jours ouvrés"
                   onChange={this.selectAll}
+                  checked={this.state.selectAll}
                 />
                 <br />
                 <br />

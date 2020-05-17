@@ -39,6 +39,7 @@ class Calendar extends Component {
     ) {
       let result = this.getDaysOfMonth(this.props.month, this.props.year);
       this.props.setDays(result);
+      this.props.fillCra(result);
     }
   }
   getDaysOfMonth(month, year) {
